@@ -1,3 +1,2 @@
 #!/bin/bash
-eval $(echo -n "WATER=123water STIR=456stir; RESULT_BASE10="; echo "(\$((\${WATER//[^0-9]/})+\${STIR//[^0-9]/}))"); RESULT_BESTCHOL=""; while [ \$RESULT_BASE10 -gt 0 ]; do R=\$((RESULT_BASE10 % 10)); RESULT_BESTCHOL="\$R\$RESULT_BESTCHOL"; RESULT_BASE10=\$((RESULT_BASE10 / 10)); done; [ -z "\$RESULT_BESTCHOL" ] && RESULT_BESTCHOL="0"; echo "Result in base bestchol: \$RESULT_BESTCHOL"
-
+printf "%o\n" $(( $((5#(echo $WATER | tr water 01234))) + $((5#(echo $STIR | tr stir. 01234))) )) | tr 01234567 bestchol
