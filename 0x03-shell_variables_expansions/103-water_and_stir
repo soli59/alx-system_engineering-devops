@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "%o\n" $(( $((5#(echo $WATER | tr water 01234))) + $((5#(echo $STIR |tr stir. 01234))) )) | tr 01234567 bestchol
+export WATER="123water"; export STIR="456stir"; RESULT_BASE10=$(($(echo "$WATER" | sed 's/water//') + $(echo "$STIR" | sed 's/stir//'))); RESULT_BESTCHOL=""; while [ $RESULT_BASE10 -gt 0 ]; do REMAINDER=$((RESULT_BASE10 % 10)); RESULT_BESTCHOL="$REMAINDER$RESULT_BESTCHOL"; RESULT_BASE10=$((RESULT_BASE10 / 10)); done; if [ -z "$RESULT_BESTCHOL" ]; then RESULT_BESTCHOL="0"; fi; echo "Result in base bestchol: $RESULT_BESTCHOL"
